@@ -17,6 +17,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Read & write access to Document Object Model.
 - Thread safe
 
+## Enhancements in Version 26.6
+
+- Download file with chunks was fixed.
+
+
 ## Enhancements in Version 26.4
 
 - Implemented jobs system to perform operations without an active connection to the server.
