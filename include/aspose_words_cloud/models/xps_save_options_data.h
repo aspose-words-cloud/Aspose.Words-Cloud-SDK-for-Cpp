@@ -36,6 +36,18 @@ namespace aspose::words::cloud::models {
     class XpsSaveOptionsData : public FixedPageSaveOptionsData
     {
     public:
+        /// <summary>
+        /// Gets or sets a compression level used to save document.
+        /// The default value is Normal.
+        /// </summary>
+        enum class CompressionLevel
+        { 
+            NORMAL,
+            MAXIMUM,
+            FAST,
+            SUPER_FAST
+        };
+
 
         ASPOSE_WORDS_CLOUD_EXPORT virtual ~XpsSaveOptionsData() = default;
         ASPOSE_WORDS_CLOUD_EXPORT virtual void toJson(void* jsonIfc) const override;
@@ -55,6 +67,19 @@ namespace aspose::words::cloud::models {
         /// Gets or sets the level in the XPS document outline at which to display Word bookmarks.
         /// </summary>
         ASPOSE_WORDS_CLOUD_EXPORT virtual void setBookmarksOutlineLevel(std::shared_ptr< int32_t > value);
+
+
+        /// <summary>
+        /// Gets or sets a compression level used to save document.
+        /// The default value is Normal.
+        /// </summary>
+        ASPOSE_WORDS_CLOUD_EXPORT virtual std::shared_ptr< aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel > getCompressionLevel() const;
+
+        /// <summary>
+        /// Gets or sets a compression level used to save document.
+        /// The default value is Normal.
+        /// </summary>
+        ASPOSE_WORDS_CLOUD_EXPORT virtual void setCompressionLevel(std::shared_ptr< aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel > value);
 
 
         /// <summary>
@@ -110,6 +135,7 @@ namespace aspose::words::cloud::models {
 
     protected:
         std::shared_ptr< int32_t > m_BookmarksOutlineLevel;
+        std::shared_ptr< aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel > m_CompressionLevel;
         std::shared_ptr< aspose::words::cloud::models::DigitalSignatureDetails > m_DigitalSignatureDetails;
         std::shared_ptr< int32_t > m_HeadingsOutlineLevels;
         std::shared_ptr< aspose::words::cloud::models::OutlineOptionsData > m_OutlineOptions;
