@@ -46,7 +46,13 @@ node('words-linux') {
             stage('tests') {
                 withCredentials([usernamePassword(credentialsId: params.credentialsId, passwordVariable: 'WordsClientSecret', usernameVariable: 'WordsClientId')]) {
                     try {
-                        sh 'docker run --rm -v "$PWD/out:/out/" -v "$PWD:/aspose-words-cloud-cpp" aspose-words-cloud-cpp-tests:linux bash /aspose-words-cloud-cpp/scripts/runTestsDocker.sh $WordsClientId $WordsClientSecret $apiUrl'
+                        // Pre-create the bind-mount source: docker would otherwise create it as root.
+                        sh 'mkdir -p out'
+                        // Run as the agent user, otherwise the cmake build tree the script writes into
+                        // the mounted workspace is owned by root and deleteDir()/cleanWs() cannot remove it.
+                        // HOME must point somewhere writable: a uid absent from the image's /etc/passwd
+                        // resolves HOME to "/".
+                        sh 'docker run --rm --user "$(id -u):$(id -g)" -e HOME=/tmp -v "$PWD/out:/out/" -v "$PWD:/aspose-words-cloud-cpp" aspose-words-cloud-cpp-tests:linux bash /aspose-words-cloud-cpp/scripts/runTestsDocker.sh $WordsClientId $WordsClientSecret $apiUrl'
                     } finally {
                         junit '**\\out\\test_result.xml'
                     }
