@@ -20215,6 +20215,9 @@ namespace aspose::words::cloud::models {
         if (this->m_FontEmbeddingMode) {
             json["FontEmbeddingMode"] = pdfSaveOptionsDataFontEmbeddingModeToString(*(this->m_FontEmbeddingMode));
         }
+        if (this->m_GenerateFormFieldScripts) {
+            json["GenerateFormFieldScripts"] = *(this->m_GenerateFormFieldScripts);
+        }
         if (this->m_HeaderFooterBookmarksExportMode) {
             json["HeaderFooterBookmarksExportMode"] = pdfSaveOptionsDataHeaderFooterBookmarksExportModeToString(*(this->m_HeaderFooterBookmarksExportMode));
         }
@@ -20339,6 +20342,11 @@ namespace aspose::words::cloud::models {
                 pdfSaveOptionsDataFontEmbeddingModeFromString(json["FontEmbeddingMode"].get< std::string >())
             );
         }
+        if (json.contains("GenerateFormFieldScripts") && !json["GenerateFormFieldScripts"].is_null()) {
+            this->m_GenerateFormFieldScripts = std::make_shared< bool >(
+                json["GenerateFormFieldScripts"].get< bool >()
+            );
+        }
         if (json.contains("HeaderFooterBookmarksExportMode") && !json["HeaderFooterBookmarksExportMode"].is_null()) {
             this->m_HeaderFooterBookmarksExportMode = std::make_shared< aspose::words::cloud::models::PdfSaveOptionsData::HeaderFooterBookmarksExportMode >(
                 pdfSaveOptionsDataHeaderFooterBookmarksExportModeFromString(json["HeaderFooterBookmarksExportMode"].get< std::string >())
@@ -20458,6 +20466,7 @@ namespace aspose::words::cloud::models {
         {
             this->m_EncryptionDetails->validate();
         }
+
 
 
 
@@ -20639,6 +20648,17 @@ namespace aspose::words::cloud::models {
     void PdfSaveOptionsData::setFontEmbeddingMode(std::shared_ptr< aspose::words::cloud::models::PdfSaveOptionsData::FontEmbeddingMode > value)
     {
         this->m_FontEmbeddingMode = value;
+    }
+
+
+    std::shared_ptr< bool > PdfSaveOptionsData::getGenerateFormFieldScripts() const
+    {
+        return this->m_GenerateFormFieldScripts;
+    }
+
+    void PdfSaveOptionsData::setGenerateFormFieldScripts(std::shared_ptr< bool > value)
+    {
+        this->m_GenerateFormFieldScripts = value;
     }
 
 
