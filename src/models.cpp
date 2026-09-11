@@ -20215,6 +20215,9 @@ namespace aspose::words::cloud::models {
         if (this->m_FontEmbeddingMode) {
             json["FontEmbeddingMode"] = pdfSaveOptionsDataFontEmbeddingModeToString(*(this->m_FontEmbeddingMode));
         }
+        if (this->m_GenerateFormFieldScripts) {
+            json["GenerateFormFieldScripts"] = *(this->m_GenerateFormFieldScripts);
+        }
         if (this->m_HeaderFooterBookmarksExportMode) {
             json["HeaderFooterBookmarksExportMode"] = pdfSaveOptionsDataHeaderFooterBookmarksExportModeToString(*(this->m_HeaderFooterBookmarksExportMode));
         }
@@ -20339,6 +20342,11 @@ namespace aspose::words::cloud::models {
                 pdfSaveOptionsDataFontEmbeddingModeFromString(json["FontEmbeddingMode"].get< std::string >())
             );
         }
+        if (json.contains("GenerateFormFieldScripts") && !json["GenerateFormFieldScripts"].is_null()) {
+            this->m_GenerateFormFieldScripts = std::make_shared< bool >(
+                json["GenerateFormFieldScripts"].get< bool >()
+            );
+        }
         if (json.contains("HeaderFooterBookmarksExportMode") && !json["HeaderFooterBookmarksExportMode"].is_null()) {
             this->m_HeaderFooterBookmarksExportMode = std::make_shared< aspose::words::cloud::models::PdfSaveOptionsData::HeaderFooterBookmarksExportMode >(
                 pdfSaveOptionsDataHeaderFooterBookmarksExportModeFromString(json["HeaderFooterBookmarksExportMode"].get< std::string >())
@@ -20458,6 +20466,7 @@ namespace aspose::words::cloud::models {
         {
             this->m_EncryptionDetails->validate();
         }
+
 
 
 
@@ -20639,6 +20648,17 @@ namespace aspose::words::cloud::models {
     void PdfSaveOptionsData::setFontEmbeddingMode(std::shared_ptr< aspose::words::cloud::models::PdfSaveOptionsData::FontEmbeddingMode > value)
     {
         this->m_FontEmbeddingMode = value;
+    }
+
+
+    std::shared_ptr< bool > PdfSaveOptionsData::getGenerateFormFieldScripts() const
+    {
+        return this->m_GenerateFormFieldScripts;
+    }
+
+    void PdfSaveOptionsData::setGenerateFormFieldScripts(std::shared_ptr< bool > value)
+    {
+        this->m_GenerateFormFieldScripts = value;
     }
 
 
@@ -31987,12 +32007,32 @@ namespace aspose::words::cloud::models {
     /*
      * XpsSaveOptionsData implementation
      */
+    inline std::string xpsSaveOptionsDataCompressionLevelToString(aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel value)
+    {
+        if (value == aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel::NORMAL) return "Normal";
+        if (value == aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel::MAXIMUM) return "Maximum";
+        if (value == aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel::FAST) return "Fast";
+        if (value == aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel::SUPER_FAST) return "SuperFast";
+        throw aspose::words::cloud::ApiException(400, L"Invalid enum value");
+    }
+
+    inline aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel xpsSaveOptionsDataCompressionLevelFromString(const std::string& value)
+    {
+        if (value == "Normal") return aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel::NORMAL;
+        if (value == "Maximum") return aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel::MAXIMUM;
+        if (value == "Fast") return aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel::FAST;
+        if (value == "SuperFast") return aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel::SUPER_FAST;
+        throw aspose::words::cloud::ApiException(400, L"Invalid enum value");
+    }
     void XpsSaveOptionsData::toJson(void* jsonIfc) const
     {
         FixedPageSaveOptionsData::toJson(jsonIfc);
         ::nlohmann::json& json = *((::nlohmann::json*)jsonIfc);
         if (this->m_BookmarksOutlineLevel) {
             json["BookmarksOutlineLevel"] = *(this->m_BookmarksOutlineLevel);
+        }
+        if (this->m_CompressionLevel) {
+            json["CompressionLevel"] = xpsSaveOptionsDataCompressionLevelToString(*(this->m_CompressionLevel));
         }
         if (this->m_DigitalSignatureDetails) {
             this->m_DigitalSignatureDetails->toJson(&json["DigitalSignatureDetails"]);
@@ -32018,6 +32058,11 @@ namespace aspose::words::cloud::models {
         if (json.contains("BookmarksOutlineLevel") && !json["BookmarksOutlineLevel"].is_null()) {
             this->m_BookmarksOutlineLevel = std::make_shared< int32_t >(
                 json["BookmarksOutlineLevel"].get< int32_t >()
+            );
+        }
+        if (json.contains("CompressionLevel") && !json["CompressionLevel"].is_null()) {
+            this->m_CompressionLevel = std::make_shared< aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel >(
+                xpsSaveOptionsDataCompressionLevelFromString(json["CompressionLevel"].get< std::string >())
             );
         }
         if (json.contains("DigitalSignatureDetails") && !json["DigitalSignatureDetails"].is_null()) {
@@ -32076,6 +32121,17 @@ namespace aspose::words::cloud::models {
     void XpsSaveOptionsData::setBookmarksOutlineLevel(std::shared_ptr< int32_t > value)
     {
         this->m_BookmarksOutlineLevel = value;
+    }
+
+
+    std::shared_ptr< aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel > XpsSaveOptionsData::getCompressionLevel() const
+    {
+        return this->m_CompressionLevel;
+    }
+
+    void XpsSaveOptionsData::setCompressionLevel(std::shared_ptr< aspose::words::cloud::models::XpsSaveOptionsData::CompressionLevel > value)
+    {
+        this->m_CompressionLevel = value;
     }
 
 

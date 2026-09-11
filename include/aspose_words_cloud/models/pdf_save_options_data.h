@@ -351,6 +351,29 @@ namespace aspose::words::cloud::models {
 
 
         /// <summary>
+        /// Gets or sets a value determining  whether to generate scripts that emulate specific Microsoft Word form field behavior in PDF.
+        /// Default is false.
+        /// When this option is enabled, the exporter generates PDF JavaScript actions to emulate Microsoft Word
+        /// form field behavior, such as date and time form fields with formatting and validation rules.When set to true, supported behavior will be exported as PDF JavaScript actions.
+        /// When set to false, no form field scripts will be generated.Script execution depends on the PDF viewer. Some PDF viewers might ignore scripts, restrict script execution,
+        /// or require the user to enable JavaScript.JavaScript actions are prohibited by PDF/A-1, PDF/A-2 and PDF/A-3 compliance.
+        /// The false value will be used automatically in this case.
+        /// </summary>
+        ASPOSE_WORDS_CLOUD_EXPORT virtual std::shared_ptr< bool > getGenerateFormFieldScripts() const;
+
+        /// <summary>
+        /// Gets or sets a value determining  whether to generate scripts that emulate specific Microsoft Word form field behavior in PDF.
+        /// Default is false.
+        /// When this option is enabled, the exporter generates PDF JavaScript actions to emulate Microsoft Word
+        /// form field behavior, such as date and time form fields with formatting and validation rules.When set to true, supported behavior will be exported as PDF JavaScript actions.
+        /// When set to false, no form field scripts will be generated.Script execution depends on the PDF viewer. Some PDF viewers might ignore scripts, restrict script execution,
+        /// or require the user to enable JavaScript.JavaScript actions are prohibited by PDF/A-1, PDF/A-2 and PDF/A-3 compliance.
+        /// The false value will be used automatically in this case.
+        /// </summary>
+        ASPOSE_WORDS_CLOUD_EXPORT virtual void setGenerateFormFieldScripts(std::shared_ptr< bool > value);
+
+
+        /// <summary>
         /// Gets or sets the option that controls how bookmarks in headers/footers are exported.
         /// The default value is Aspose.Words.Saving.HeaderFooterBookmarksExportMode.All.
         /// </summary>
@@ -583,6 +606,7 @@ namespace aspose::words::cloud::models {
         std::shared_ptr< bool > m_ExportDocumentStructure;
         std::shared_ptr< bool > m_ExportLanguageToSpanTag;
         std::shared_ptr< aspose::words::cloud::models::PdfSaveOptionsData::FontEmbeddingMode > m_FontEmbeddingMode;
+        std::shared_ptr< bool > m_GenerateFormFieldScripts;
         std::shared_ptr< aspose::words::cloud::models::PdfSaveOptionsData::HeaderFooterBookmarksExportMode > m_HeaderFooterBookmarksExportMode;
         std::shared_ptr< aspose::words::cloud::models::PdfSaveOptionsData::ImageColorSpaceExportMode > m_ImageColorSpaceExportMode;
         std::shared_ptr< std::wstring > m_ImageCompression;
