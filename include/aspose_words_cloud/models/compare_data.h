@@ -25,6 +25,7 @@
 
 #pragma once
 #include "model_base.h"
+#include "advanced_compare_options.h"
 #include "compare_options.h"
 #include "file_reference.h"
 
@@ -41,6 +42,17 @@ namespace aspose::words::cloud::models {
         ASPOSE_WORDS_CLOUD_EXPORT virtual void fromJson(const void* jsonIfc) override;
         ASPOSE_WORDS_CLOUD_EXPORT virtual void getFileReferences(std::vector< FileReference* >& result) override;
         ASPOSE_WORDS_CLOUD_EXPORT virtual void validate() override;
+
+
+        /// <summary>
+        /// Gets or sets advanced compare options that might help to produce more precise comparison output.
+        /// </summary>
+        ASPOSE_WORDS_CLOUD_EXPORT virtual std::shared_ptr< aspose::words::cloud::models::AdvancedCompareOptions > getAdvancedOptions() const;
+
+        /// <summary>
+        /// Gets or sets advanced compare options that might help to produce more precise comparison output.
+        /// </summary>
+        ASPOSE_WORDS_CLOUD_EXPORT virtual void setAdvancedOptions(std::shared_ptr< aspose::words::cloud::models::AdvancedCompareOptions > value);
 
 
         /// <summary>
@@ -112,6 +124,7 @@ namespace aspose::words::cloud::models {
 
 
     protected:
+        std::shared_ptr< aspose::words::cloud::models::AdvancedCompareOptions > m_AdvancedOptions;
         std::shared_ptr< std::wstring > m_Author;
         std::shared_ptr< aspose::words::cloud::models::CompareOptions > m_CompareOptions;
         std::shared_ptr< std::wstring > m_ComparingWithDocument;

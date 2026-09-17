@@ -30,6 +30,7 @@
 
 namespace aspose::words::cloud::models {
     static std::unordered_map< std::wstring, std::function< ModelBase*() > > *modelsFactory = new std::unordered_map< std::wstring, std::function< ModelBase* () > > {
+        { L"AdvancedCompareOptions, _", [] () { return dynamic_cast< ModelBase* >(new AdvancedCompareOptions()); }},
         { L"ApiError, _", [] () { return dynamic_cast< ModelBase* >(new ApiError()); }},
         { L"AvailableFontsResponse, _", [] () { return dynamic_cast< ModelBase* >(new AvailableFontsResponse()); }},
         { L"Azw3SaveOptionsData, _", [] () { return dynamic_cast< ModelBase* >(new Azw3SaveOptionsData()); }},
@@ -482,6 +483,85 @@ namespace aspose::words::cloud::models {
         if (value == "UpdateFieldsSyntaxAware") return ReportBuildOptions::UPDATE_FIELDS_SYNTAX_AWARE;
         throw aspose::words::cloud::ApiException(400, L"Invalid enum value");
     }
+
+
+    /*
+     * AdvancedCompareOptions implementation
+     */
+    void AdvancedCompareOptions::toJson(void* jsonIfc) const
+    {
+        ::nlohmann::json& json = *((::nlohmann::json*)jsonIfc);
+        if (this->m_CompareListDefinitions) {
+            json["CompareListDefinitions"] = *(this->m_CompareListDefinitions);
+        }
+        if (this->m_IgnoreDmlUniqueId) {
+            json["IgnoreDmlUniqueId"] = *(this->m_IgnoreDmlUniqueId);
+        }
+        if (this->m_IgnoreStoreItemId) {
+            json["IgnoreStoreItemId"] = *(this->m_IgnoreStoreItemId);
+        }
+    }
+
+    void AdvancedCompareOptions::fromJson(const void* jsonIfc)
+    {
+        ::nlohmann::json& json = *((::nlohmann::json*)jsonIfc);
+        if (json.contains("CompareListDefinitions") && !json["CompareListDefinitions"].is_null()) {
+            this->m_CompareListDefinitions = std::make_shared< bool >(
+                json["CompareListDefinitions"].get< bool >()
+            );
+        }
+        if (json.contains("IgnoreDmlUniqueId") && !json["IgnoreDmlUniqueId"].is_null()) {
+            this->m_IgnoreDmlUniqueId = std::make_shared< bool >(
+                json["IgnoreDmlUniqueId"].get< bool >()
+            );
+        }
+        if (json.contains("IgnoreStoreItemId") && !json["IgnoreStoreItemId"].is_null()) {
+            this->m_IgnoreStoreItemId = std::make_shared< bool >(
+                json["IgnoreStoreItemId"].get< bool >()
+            );
+        }
+    }
+
+    void AdvancedCompareOptions::getFileReferences(std::vector< FileReference* >& result)
+    {
+    }
+
+    void AdvancedCompareOptions::validate()
+    {
+    }
+
+    std::shared_ptr< bool > AdvancedCompareOptions::getCompareListDefinitions() const
+    {
+        return this->m_CompareListDefinitions;
+    }
+
+    void AdvancedCompareOptions::setCompareListDefinitions(std::shared_ptr< bool > value)
+    {
+        this->m_CompareListDefinitions = value;
+    }
+
+
+    std::shared_ptr< bool > AdvancedCompareOptions::getIgnoreDmlUniqueId() const
+    {
+        return this->m_IgnoreDmlUniqueId;
+    }
+
+    void AdvancedCompareOptions::setIgnoreDmlUniqueId(std::shared_ptr< bool > value)
+    {
+        this->m_IgnoreDmlUniqueId = value;
+    }
+
+
+    std::shared_ptr< bool > AdvancedCompareOptions::getIgnoreStoreItemId() const
+    {
+        return this->m_IgnoreStoreItemId;
+    }
+
+    void AdvancedCompareOptions::setIgnoreStoreItemId(std::shared_ptr< bool > value)
+    {
+        this->m_IgnoreStoreItemId = value;
+    }
+
 
 
     /*
@@ -2472,6 +2552,9 @@ namespace aspose::words::cloud::models {
     void CompareData::toJson(void* jsonIfc) const
     {
         ::nlohmann::json& json = *((::nlohmann::json*)jsonIfc);
+        if (this->m_AdvancedOptions) {
+            this->m_AdvancedOptions->toJson(&json["AdvancedOptions"]);
+        }
         if (this->m_Author) {
             json["Author"] = convertUtf16(*(this->m_Author));
         }
@@ -2495,6 +2578,9 @@ namespace aspose::words::cloud::models {
     void CompareData::fromJson(const void* jsonIfc)
     {
         ::nlohmann::json& json = *((::nlohmann::json*)jsonIfc);
+        if (json.contains("AdvancedOptions") && !json["AdvancedOptions"].is_null()) {
+            this->m_AdvancedOptions = createModelInstance< aspose::words::cloud::models::AdvancedCompareOptions >(L"AdvancedCompareOptions, _", json["AdvancedOptions"]);
+        }
         if (json.contains("Author") && !json["Author"].is_null()) {
             this->m_Author = std::make_shared< std::wstring >(
                 convertUtf8( json["Author"].get< std::string >() )
@@ -2548,6 +2634,14 @@ namespace aspose::words::cloud::models {
         this->m_FileReference->validate();
 
 
+        if (this->m_AdvancedOptions != nullptr)
+        {
+            this->m_AdvancedOptions->validate();
+        }
+
+
+
+
         if (this->m_CompareOptions != nullptr)
         {
             this->m_CompareOptions->validate();
@@ -2564,6 +2658,17 @@ namespace aspose::words::cloud::models {
 
 
     }
+
+    std::shared_ptr< aspose::words::cloud::models::AdvancedCompareOptions > CompareData::getAdvancedOptions() const
+    {
+        return this->m_AdvancedOptions;
+    }
+
+    void CompareData::setAdvancedOptions(std::shared_ptr< aspose::words::cloud::models::AdvancedCompareOptions > value)
+    {
+        this->m_AdvancedOptions = value;
+    }
+
 
     std::shared_ptr< std::wstring > CompareData::getAuthor() const
     {

@@ -17,6 +17,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Read & write access to Document Object Model.
 - Thread safe
 
+## Enhancements in Version 26.10
+
+- Added 'AdvancedOptions' property for CompareData class.
+
+
 ## Enhancements in Version 26.9
 
 - Added 'CompressionLevel' property for XpsSaveOptionsData class.
