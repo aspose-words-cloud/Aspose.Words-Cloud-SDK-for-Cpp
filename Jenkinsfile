@@ -15,7 +15,7 @@ def buildCacheImage = "git.auckland.dynabic.com:4567/words-cloud/api/cpp"
 def needToBuild = false
 def packageTesting = false
 
-node('words-linux') {
+node('sdk-linux') {
     try {
         stage('checkout'){
             packageTesting = params.packageTesting
