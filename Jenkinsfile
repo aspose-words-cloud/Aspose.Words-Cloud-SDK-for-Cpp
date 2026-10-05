@@ -11,7 +11,7 @@ properties([
 	]
 ])
 
-def buildCacheImage = "git.auckland.dynabic.com:4567/words-cloud/api/cpp"
+def buildCacheImage = "docker.registry.svc.k8s.dynabic.com/words/cloud/sdk/cpp"
 def needToBuild = false
 def packageTesting = false
 
@@ -36,9 +36,9 @@ node('sdk-linux') {
         
         if (needToBuild) {
             stage('build') {
-                withCredentials([usernamePassword(credentialsId: 'cc2e3c9b-b3da-4455-b702-227bcce18895', usernameVariable: 'dockerrigistry_login', passwordVariable: 'dockerregistry_password')]) {
-                    sh 'docker login -u "${dockerrigistry_login}" -p "${dockerregistry_password}" git.auckland.dynabic.com:4567'
-                    sh (script: "docker pull ${buildCacheImage}/linux:latest")
+                withCredentials([usernamePassword(credentialsId: 'k8s-registry', usernameVariable: 'dockerrigistry_login', passwordVariable: 'dockerregistry_password')]) {
+                    sh 'docker login -u "${dockerrigistry_login}" -p "${dockerregistry_password}" docker.registry.svc.k8s.dynabic.com'
+                    sh (script: "docker pull ${buildCacheImage}/linux:latest || true")
                     sh (script: "docker build --cache-from=${buildCacheImage}/linux:latest -t ${buildCacheImage}/linux:latest -t aspose-words-cloud-cpp-tests:linux - < Dockerfile.linux")
                     sh (script: "docker push ${buildCacheImage}/linux:latest")
                 }
