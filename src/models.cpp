@@ -19863,6 +19863,7 @@ namespace aspose::words::cloud::models {
         if (value == aspose::words::cloud::models::PdfDigitalSignatureDetailsData::HashAlgorithm::SHA384) return "Sha384";
         if (value == aspose::words::cloud::models::PdfDigitalSignatureDetailsData::HashAlgorithm::SHA512) return "Sha512";
         if (value == aspose::words::cloud::models::PdfDigitalSignatureDetailsData::HashAlgorithm::RIPE_M_D160) return "RipeMD160";
+        if (value == aspose::words::cloud::models::PdfDigitalSignatureDetailsData::HashAlgorithm::AUTO) return "Auto";
         throw aspose::words::cloud::ApiException(400, L"Invalid enum value");
     }
 
@@ -19872,6 +19873,7 @@ namespace aspose::words::cloud::models {
         if (value == "Sha384") return aspose::words::cloud::models::PdfDigitalSignatureDetailsData::HashAlgorithm::SHA384;
         if (value == "Sha512") return aspose::words::cloud::models::PdfDigitalSignatureDetailsData::HashAlgorithm::SHA512;
         if (value == "RipeMD160") return aspose::words::cloud::models::PdfDigitalSignatureDetailsData::HashAlgorithm::RIPE_M_D160;
+        if (value == "Auto") return aspose::words::cloud::models::PdfDigitalSignatureDetailsData::HashAlgorithm::AUTO;
         throw aspose::words::cloud::ApiException(400, L"Invalid enum value");
     }
     void PdfDigitalSignatureDetailsData::toJson(void* jsonIfc) const
