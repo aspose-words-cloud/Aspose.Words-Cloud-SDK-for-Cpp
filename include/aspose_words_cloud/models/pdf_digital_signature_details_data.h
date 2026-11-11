@@ -41,7 +41,8 @@ namespace aspose::words::cloud::models {
             SHA256,
             SHA384,
             SHA512,
-            RIPE_M_D160
+            RIPE_M_D160,
+            AUTO
         };
 
 
