@@ -504,6 +504,82 @@ TEST_F(DrawingObjectsTests, TestInsertDrawingObjectWithoutNodePath) {
 }
 
 /// <summary>
+/// Test for adding drawing object with the image from the storage.
+/// </summary>
+TEST_F(DrawingObjectsTests, TestInsertDrawingObjectByReference) {
+    std::wstring remoteFileName = L"TestInsertDrawingObjectByReference.docx";
+    std::wstring remoteImagePath = remoteDataFolder + L"/TestInsertDrawingObjectByReference.png";
+
+    uploadFileToStorage(
+        localTestDataFolder + L"/" + localFile,
+        remoteDataFolder + L"/" + remoteFileName
+    );
+    uploadFileToStorage(
+        localTestDataFolder + L"/" + L"Common/aspose-cloud.png",
+        remoteImagePath
+    );
+
+    auto requestDrawingObjectImageReference = std::make_shared< aspose::words::cloud::models::FileReference >(std::make_shared< std::wstring >(remoteImagePath));
+    auto requestDrawingObject = std::make_shared< aspose::words::cloud::models::DrawingObjectInsertData >();
+    requestDrawingObject->setHeight(std::make_shared< double >(0));
+    requestDrawingObject->setLeft(std::make_shared< double >(0));
+    requestDrawingObject->setTop(std::make_shared< double >(0));
+    requestDrawingObject->setWidth(std::make_shared< double >(0));
+    requestDrawingObject->setRelativeHorizontalPosition(std::make_shared< aspose::words::cloud::models::DrawingObjectInsert::RelativeHorizontalPosition >(aspose::words::cloud::models::DrawingObjectInsert::RelativeHorizontalPosition::MARGIN));
+    requestDrawingObject->setRelativeVerticalPosition(std::make_shared< aspose::words::cloud::models::DrawingObjectInsert::RelativeVerticalPosition >(aspose::words::cloud::models::DrawingObjectInsert::RelativeVerticalPosition::MARGIN));
+    requestDrawingObject->setWrapType(std::make_shared< aspose::words::cloud::models::DrawingObjectInsert::WrapType >(aspose::words::cloud::models::DrawingObjectInsert::WrapType::INLINE));
+    requestDrawingObject->setImageReference(requestDrawingObjectImageReference);
+    std::shared_ptr<requests::InsertDrawingObjectByReferenceRequest> request(new requests::InsertDrawingObjectByReferenceRequest(
+        std::make_shared< std::wstring >(remoteFileName),
+        requestDrawingObject,
+        std::make_shared< std::wstring >(L""),
+        std::make_shared< std::wstring >(remoteDataFolder),
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr
+    ));
+
+    auto actual = getApi()->insertDrawingObjectByReference(request);
+}
+
+/// <summary>
+/// Test for adding drawing object online with the image from the request.
+/// </summary>
+TEST_F(DrawingObjectsTests, TestInsertDrawingObjectByReferenceOnline) {
+    auto requestDocument = std::shared_ptr<std::istream>(new std::ifstream(std::filesystem::path(getDataDir(localFile)), std::istream::binary));
+    auto requestDrawingObjectImageReferenceStream = std::shared_ptr<std::istream>(new std::ifstream(std::filesystem::path(getDataDir(L"Common/aspose-cloud.png")), std::istream::binary));
+    auto requestDrawingObjectImageReference = std::make_shared< aspose::words::cloud::models::FileReference >(requestDrawingObjectImageReferenceStream);
+    auto requestDrawingObject = std::make_shared< aspose::words::cloud::models::DrawingObjectInsertData >();
+    requestDrawingObject->setHeight(std::make_shared< double >(0));
+    requestDrawingObject->setLeft(std::make_shared< double >(0));
+    requestDrawingObject->setTop(std::make_shared< double >(0));
+    requestDrawingObject->setWidth(std::make_shared< double >(0));
+    requestDrawingObject->setRelativeHorizontalPosition(std::make_shared< aspose::words::cloud::models::DrawingObjectInsert::RelativeHorizontalPosition >(aspose::words::cloud::models::DrawingObjectInsert::RelativeHorizontalPosition::MARGIN));
+    requestDrawingObject->setRelativeVerticalPosition(std::make_shared< aspose::words::cloud::models::DrawingObjectInsert::RelativeVerticalPosition >(aspose::words::cloud::models::DrawingObjectInsert::RelativeVerticalPosition::MARGIN));
+    requestDrawingObject->setWrapType(std::make_shared< aspose::words::cloud::models::DrawingObjectInsert::WrapType >(aspose::words::cloud::models::DrawingObjectInsert::WrapType::INLINE));
+    requestDrawingObject->setImageReference(requestDrawingObjectImageReference);
+    std::shared_ptr<requests::InsertDrawingObjectByReferenceOnlineRequest> request(new requests::InsertDrawingObjectByReferenceOnlineRequest(
+        requestDocument,
+        requestDrawingObject,
+        std::make_shared< std::wstring >(L""),
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr
+    ));
+
+    auto actual = getApi()->insertDrawingObjectByReferenceOnline(request);
+}
+
+/// <summary>
 /// Test for deleting drawing object.
 /// </summary>
 TEST_F(DrawingObjectsTests, TestDeleteDrawingObject) {

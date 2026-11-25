@@ -90,6 +90,7 @@ namespace aspose::words::cloud::models {
         { L"DrawingObject, _", [] () { return dynamic_cast< ModelBase* >(new DrawingObject()); }},
         { L"DrawingObjectCollection, _", [] () { return dynamic_cast< ModelBase* >(new DrawingObjectCollection()); }},
         { L"DrawingObjectInsert, _", [] () { return dynamic_cast< ModelBase* >(new DrawingObjectInsert()); }},
+        { L"DrawingObjectInsertData, _", [] () { return dynamic_cast< ModelBase* >(new DrawingObjectInsertData()); }},
         { L"DrawingObjectLink, _", [] () { return dynamic_cast< ModelBase* >(new DrawingObjectLink()); }},
         { L"DrawingObjectResponse, _", [] () { return dynamic_cast< ModelBase* >(new DrawingObjectResponse()); }},
         { L"DrawingObjectsResponse, _", [] () { return dynamic_cast< ModelBase* >(new DrawingObjectsResponse()); }},
@@ -5751,6 +5752,67 @@ namespace aspose::words::cloud::models {
     void DrawingObjectInsert::setAspectRatioLocked(std::shared_ptr< bool > value)
     {
         this->m_AspectRatioLocked = value;
+    }
+
+
+
+    /*
+     * DrawingObjectInsertData implementation
+     */
+    void DrawingObjectInsertData::toJson(void* jsonIfc) const
+    {
+        DrawingObjectInsert::toJson(jsonIfc);
+        ::nlohmann::json& json = *((::nlohmann::json*)jsonIfc);
+        if (this->m_ImageReference) {
+            this->m_ImageReference->toJson(&json["ImageReference"]);
+        }
+    }
+
+    void DrawingObjectInsertData::fromJson(const void* jsonIfc)
+    {
+        DrawingObjectInsert::fromJson(jsonIfc);
+        ::nlohmann::json& json = *((::nlohmann::json*)jsonIfc);
+        if (json.contains("ImageReference") && !json["ImageReference"].is_null()) {
+            this->m_ImageReference = createModelInstance< aspose::words::cloud::models::FileReference >(L"FileReference, _", json["ImageReference"]);
+        }
+    }
+
+    void DrawingObjectInsertData::getFileReferences(std::vector< FileReference* >& result)
+    {
+        DrawingObjectInsert::getFileReferences(result);
+        if (getImageReference() != nullptr)
+        {
+            getImageReference()->getFileReferences(result);
+        }
+
+    }
+
+    void DrawingObjectInsertData::validate()
+    {
+        DrawingObjectInsert::validate();
+        if (this->m_ImageReference == nullptr)
+        {
+            throw aspose::words::cloud::ApiException(400, L"Property ImageReference in DrawingObjectInsertData is required.");
+        }
+
+        this->m_ImageReference->validate();
+
+
+        if (this->m_ImageReference != nullptr)
+        {
+            this->m_ImageReference->validate();
+        }
+
+    }
+
+    std::shared_ptr< aspose::words::cloud::models::FileReference > DrawingObjectInsertData::getImageReference() const
+    {
+        return this->m_ImageReference;
+    }
+
+    void DrawingObjectInsertData::setImageReference(std::shared_ptr< aspose::words::cloud::models::FileReference > value)
+    {
+        this->m_ImageReference = value;
     }
 
 
