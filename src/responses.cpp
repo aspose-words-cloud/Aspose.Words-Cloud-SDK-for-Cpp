@@ -3294,6 +3294,47 @@ namespace aspose::words::cloud::responses {
     }
 
     /*
+     * InsertDrawingObjectByReference request implementation
+     */
+    std::shared_ptr< aspose::words::cloud::models::DrawingObjectResponse > InsertDrawingObjectByReferenceResponse::getModel() const
+    {
+        return m_Model;
+    }
+
+    void InsertDrawingObjectByReferenceResponse::deserialize(const std::string& contentType, const std::string_view& response)
+    {
+        m_Model = createModelInstance< aspose::words::cloud::models::DrawingObjectResponse >(L"DrawingObjectResponse, _", response);
+    }
+
+    /*
+     * InsertDrawingObjectByReferenceOnline request implementation
+     */
+    std::shared_ptr< aspose::words::cloud::models::DrawingObjectResponse > InsertDrawingObjectByReferenceOnlineResponse::getModel() const
+    {
+        return m_Model;
+    }
+
+    std::shared_ptr< std::map<std::wstring, std::shared_ptr<std::istream>> > InsertDrawingObjectByReferenceOnlineResponse::getDocument() const
+    {
+        return m_Document;
+    }
+
+    void InsertDrawingObjectByReferenceOnlineResponse::deserialize(const std::string& contentType, const std::string_view& response)
+    {
+        std::unordered_map<std::string, std::tuple<std::string, std::string, std::string_view> > parts;
+        parseMultipart(response, parts);
+        if (parts.find("Model") != parts.end()) {
+            const auto& part = parts.at("Model");
+            auto json = ::nlohmann::json::parse(std::get<2>(part));
+            m_Model = createModelInstance< aspose::words::cloud::models::DrawingObjectResponse >(L"DrawingObjectResponse, _", std::get<2>(part));
+        }
+        if (parts.find("Document") != parts.end()) {
+            const auto& part = parts.at("Document");
+            m_Document = parseFilesCollection(part);
+        }
+    }
+
+    /*
      * InsertDrawingObjectOnline request implementation
      */
     std::shared_ptr< aspose::words::cloud::models::DrawingObjectResponse > InsertDrawingObjectOnlineResponse::getModel() const

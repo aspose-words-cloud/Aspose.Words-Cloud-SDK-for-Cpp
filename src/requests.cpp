@@ -25413,7 +25413,8 @@ namespace aspose::words::cloud::requests {
         if (m_DrawingObject)
         {
             result->addFormDataParam(L"drawingObject", *m_DrawingObject);
-            m_DrawingObject->validate();}
+            m_DrawingObject->validate();    m_DrawingObject->getFileReferences(additionalFilesContent);
+        }
         else throw aspose::words::cloud::ApiException(400, L"Parameter 'DrawingObject' is required.");
 
         if (m_ImageFile)
@@ -25450,6 +25451,289 @@ namespace aspose::words::cloud::requests {
     {
         auto typedResponse = std::static_pointer_cast< aspose::words::cloud::responses::InsertDrawingObjectResponse >(response);
         return std::any(typedResponse->getModel());
+    }
+
+    /*
+     * InsertDrawingObjectByReference request implementation
+     */
+    InsertDrawingObjectByReferenceRequest::InsertDrawingObjectByReferenceRequest(
+        const std::shared_ptr< std::wstring > name,
+        const std::shared_ptr< aspose::words::cloud::models::DrawingObjectInsertData > drawingObject,
+        const std::shared_ptr< std::wstring > nodePath,
+        const std::shared_ptr< std::wstring > folder,
+        const std::shared_ptr< std::wstring > storage,
+        const std::shared_ptr< std::wstring > loadEncoding,
+        const std::shared_ptr< std::wstring > password,
+        const std::shared_ptr< std::wstring > encryptedPassword,
+        const std::shared_ptr< bool > openTypeSupport,
+        const std::shared_ptr< std::wstring > destFileName,
+        const std::shared_ptr< std::wstring > revisionAuthor,
+        const std::shared_ptr< std::wstring > revisionDateTime
+    ) : 
+        m_Name(name),
+        m_DrawingObject(drawingObject),
+        m_NodePath(nodePath),
+        m_Folder(folder),
+        m_Storage(storage),
+        m_LoadEncoding(loadEncoding),
+        m_Password(password),
+        m_EncryptedPassword(encryptedPassword),
+        m_OpenTypeSupport(openTypeSupport),
+        m_DestFileName(destFileName),
+        m_RevisionAuthor(revisionAuthor),
+        m_RevisionDateTime(revisionDateTime)
+    {
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getName() const
+    {
+        return m_Name;
+    }
+
+    const std::shared_ptr< aspose::words::cloud::models::DrawingObjectInsertData > InsertDrawingObjectByReferenceRequest::getDrawingObject() const
+    {
+        return m_DrawingObject;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getNodePath() const
+    {
+        return m_NodePath;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getFolder() const
+    {
+        return m_Folder;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getStorage() const
+    {
+        return m_Storage;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getLoadEncoding() const
+    {
+        return m_LoadEncoding;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getPassword() const
+    {
+        return m_Password;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getEncryptedPassword() const
+    {
+        return m_EncryptedPassword;
+    }
+
+    const std::shared_ptr< bool > InsertDrawingObjectByReferenceRequest::getOpenTypeSupport() const
+    {
+        return m_OpenTypeSupport;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getDestFileName() const
+    {
+        return m_DestFileName;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getRevisionAuthor() const
+    {
+        return m_RevisionAuthor;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceRequest::getRevisionDateTime() const
+    {
+        return m_RevisionDateTime;
+    }
+
+    std::shared_ptr< aspose::words::cloud::HttpRequestData > InsertDrawingObjectByReferenceRequest::createHttpRequest(ApiClient* apiClient) const
+    {
+        std::vector<models::FileReference*> additionalFilesContent;
+        auto result = std::make_shared<HttpRequestData>();
+        result->setMethod(HttpRequestMethod::HttpPOST);
+        result->setPath(L"/words/{name}/{nodePath}/drawingObjects/insert");
+        if (!m_Name) throw aspose::words::cloud::ApiException(400, L"Parameter 'Name' is required.");
+        result->setPathParam(L"{name}", *m_Name);
+        result->setPathParam(L"{nodePath}", m_NodePath ? *m_NodePath : L"");
+        if (m_Folder) result->addQueryParam(L"folder", *m_Folder);
+        if (m_Storage) result->addQueryParam(L"storage", *m_Storage);
+        if (m_LoadEncoding) result->addQueryParam(L"loadEncoding", *m_LoadEncoding);
+        if (m_Password) result->addQueryParam(L"password", *m_Password);
+        if (m_EncryptedPassword) result->addQueryParam(L"encryptedPassword", *m_EncryptedPassword);
+        if (m_OpenTypeSupport) result->addQueryParam(L"openTypeSupport", *m_OpenTypeSupport);
+        if (m_DestFileName) result->addQueryParam(L"destFileName", *m_DestFileName);
+        if (m_RevisionAuthor) result->addQueryParam(L"revisionAuthor", *m_RevisionAuthor);
+        if (m_RevisionDateTime) result->addQueryParam(L"revisionDateTime", *m_RevisionDateTime);
+        if (m_DrawingObject)
+        {
+            result->addFormDataParam(L"Body", *m_DrawingObject);
+            m_DrawingObject->validate();    m_DrawingObject->getFileReferences(additionalFilesContent);
+        }
+        else throw aspose::words::cloud::ApiException(400, L"Parameter 'DrawingObject' is required.");
+
+
+        for (models::FileReference* additionalFileContent : additionalFilesContent)
+        {
+            if (additionalFileContent != nullptr)
+            {
+                additionalFileContent->encryptPassword(apiClient);
+                result->addFormDataParam(additionalFileContent);
+            }
+        }
+
+        return result;
+    }
+
+    std::shared_ptr< aspose::words::cloud::responses::ResponseModelBase > InsertDrawingObjectByReferenceRequest::createResponse() const
+    {
+        return std::shared_ptr< aspose::words::cloud::responses::ResponseModelBase >(
+            new aspose::words::cloud::responses::InsertDrawingObjectByReferenceResponse()
+        );
+    }
+
+    std::shared_ptr<RequestModelBase> InsertDrawingObjectByReferenceRequest::getOriginalRequest() const
+    {
+        return std::const_pointer_cast<RequestModelBase>(shared_from_this());
+    }
+
+    std::any InsertDrawingObjectByReferenceRequest::getResponseResult(const std::shared_ptr< aspose::words::cloud::responses::ResponseModelBase >& response) const
+    {
+        auto typedResponse = std::static_pointer_cast< aspose::words::cloud::responses::InsertDrawingObjectByReferenceResponse >(response);
+        return std::any(typedResponse->getModel());
+    }
+
+    /*
+     * InsertDrawingObjectByReferenceOnline request implementation
+     */
+    InsertDrawingObjectByReferenceOnlineRequest::InsertDrawingObjectByReferenceOnlineRequest(
+        const std::shared_ptr< std::istream > document,
+        const std::shared_ptr< aspose::words::cloud::models::DrawingObjectInsertData > drawingObject,
+        const std::shared_ptr< std::wstring > nodePath,
+        const std::shared_ptr< std::wstring > loadEncoding,
+        const std::shared_ptr< std::wstring > password,
+        const std::shared_ptr< std::wstring > encryptedPassword,
+        const std::shared_ptr< bool > openTypeSupport,
+        const std::shared_ptr< std::wstring > destFileName,
+        const std::shared_ptr< std::wstring > revisionAuthor,
+        const std::shared_ptr< std::wstring > revisionDateTime
+    ) : 
+        m_Document(document),
+        m_DrawingObject(drawingObject),
+        m_NodePath(nodePath),
+        m_LoadEncoding(loadEncoding),
+        m_Password(password),
+        m_EncryptedPassword(encryptedPassword),
+        m_OpenTypeSupport(openTypeSupport),
+        m_DestFileName(destFileName),
+        m_RevisionAuthor(revisionAuthor),
+        m_RevisionDateTime(revisionDateTime)
+    {
+    }
+
+    const std::shared_ptr< std::istream > InsertDrawingObjectByReferenceOnlineRequest::getDocument() const
+    {
+        return m_Document;
+    }
+
+    const std::shared_ptr< aspose::words::cloud::models::DrawingObjectInsertData > InsertDrawingObjectByReferenceOnlineRequest::getDrawingObject() const
+    {
+        return m_DrawingObject;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceOnlineRequest::getNodePath() const
+    {
+        return m_NodePath;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceOnlineRequest::getLoadEncoding() const
+    {
+        return m_LoadEncoding;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceOnlineRequest::getPassword() const
+    {
+        return m_Password;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceOnlineRequest::getEncryptedPassword() const
+    {
+        return m_EncryptedPassword;
+    }
+
+    const std::shared_ptr< bool > InsertDrawingObjectByReferenceOnlineRequest::getOpenTypeSupport() const
+    {
+        return m_OpenTypeSupport;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceOnlineRequest::getDestFileName() const
+    {
+        return m_DestFileName;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceOnlineRequest::getRevisionAuthor() const
+    {
+        return m_RevisionAuthor;
+    }
+
+    const std::shared_ptr< std::wstring > InsertDrawingObjectByReferenceOnlineRequest::getRevisionDateTime() const
+    {
+        return m_RevisionDateTime;
+    }
+
+    std::shared_ptr< aspose::words::cloud::HttpRequestData > InsertDrawingObjectByReferenceOnlineRequest::createHttpRequest(ApiClient* apiClient) const
+    {
+        std::vector<models::FileReference*> additionalFilesContent;
+        auto result = std::make_shared<HttpRequestData>();
+        result->setMethod(HttpRequestMethod::HttpPUT);
+        result->setPath(L"/words/online/post/{nodePath}/drawingObjects/insert");
+        result->setPathParam(L"{nodePath}", m_NodePath ? *m_NodePath : L"");
+        if (m_LoadEncoding) result->addQueryParam(L"loadEncoding", *m_LoadEncoding);
+        if (m_Password) result->addQueryParam(L"password", *m_Password);
+        if (m_EncryptedPassword) result->addQueryParam(L"encryptedPassword", *m_EncryptedPassword);
+        if (m_OpenTypeSupport) result->addQueryParam(L"openTypeSupport", *m_OpenTypeSupport);
+        if (m_DestFileName) result->addQueryParam(L"destFileName", *m_DestFileName);
+        if (m_RevisionAuthor) result->addQueryParam(L"revisionAuthor", *m_RevisionAuthor);
+        if (m_RevisionDateTime) result->addQueryParam(L"revisionDateTime", *m_RevisionDateTime);
+        if (m_Document)
+        {
+            result->addFormDataParam(L"document", *m_Document);
+        }
+        else throw aspose::words::cloud::ApiException(400, L"Parameter 'Document' is required.");
+
+        if (m_DrawingObject)
+        {
+            result->addFormDataParam(L"drawingObject", *m_DrawingObject);
+            m_DrawingObject->validate();    m_DrawingObject->getFileReferences(additionalFilesContent);
+        }
+        else throw aspose::words::cloud::ApiException(400, L"Parameter 'DrawingObject' is required.");
+
+        for (models::FileReference* additionalFileContent : additionalFilesContent)
+        {
+            if (additionalFileContent != nullptr)
+            {
+                additionalFileContent->encryptPassword(apiClient);
+                result->addFormDataParam(additionalFileContent);
+            }
+        }
+
+        return result;
+    }
+
+    std::shared_ptr< aspose::words::cloud::responses::ResponseModelBase > InsertDrawingObjectByReferenceOnlineRequest::createResponse() const
+    {
+        return std::shared_ptr< aspose::words::cloud::responses::ResponseModelBase >(
+            new aspose::words::cloud::responses::InsertDrawingObjectByReferenceOnlineResponse()
+        );
+    }
+
+    std::shared_ptr<RequestModelBase> InsertDrawingObjectByReferenceOnlineRequest::getOriginalRequest() const
+    {
+        return std::const_pointer_cast<RequestModelBase>(shared_from_this());
+    }
+
+    std::any InsertDrawingObjectByReferenceOnlineRequest::getResponseResult(const std::shared_ptr< aspose::words::cloud::responses::ResponseModelBase >& response) const
+    {
+        auto typedResponse = std::static_pointer_cast< aspose::words::cloud::responses::InsertDrawingObjectByReferenceOnlineResponse >(response);
+        return std::any(typedResponse);
     }
 
     /*
@@ -25560,7 +25844,8 @@ namespace aspose::words::cloud::requests {
         if (m_DrawingObject)
         {
             result->addFormDataParam(L"drawingObject", *m_DrawingObject);
-            m_DrawingObject->validate();}
+            m_DrawingObject->validate();    m_DrawingObject->getFileReferences(additionalFilesContent);
+        }
         else throw aspose::words::cloud::ApiException(400, L"Parameter 'DrawingObject' is required.");
 
         if (m_ImageFile)

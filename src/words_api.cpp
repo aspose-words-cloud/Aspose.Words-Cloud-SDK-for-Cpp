@@ -2402,6 +2402,28 @@ namespace aspose::words::cloud::api {
         return response->getModel();
     }
 
+    std::shared_ptr< aspose::words::cloud::models::DrawingObjectResponse > WordsApi::insertDrawingObjectByReference(std::shared_ptr<aspose::words::cloud::requests::InsertDrawingObjectByReferenceRequest> request)
+    {
+        auto response = std::make_shared< aspose::words::cloud::responses::InsertDrawingObjectByReferenceResponse >();
+        m_ApiClient->call(request->createHttpRequest(m_ApiClient.get()), *response);
+        if (response->getStatusCode() != 200) {
+            throw aspose::words::cloud::ApiException(response->getStatusCode(), response->getErrorMessage());
+        }
+
+        return response->getModel();
+    }
+
+    std::shared_ptr<aspose::words::cloud::responses::InsertDrawingObjectByReferenceOnlineResponse> WordsApi::insertDrawingObjectByReferenceOnline(std::shared_ptr<aspose::words::cloud::requests::InsertDrawingObjectByReferenceOnlineRequest> request)
+    {
+        auto response = std::make_shared< aspose::words::cloud::responses::InsertDrawingObjectByReferenceOnlineResponse >();
+        m_ApiClient->call(request->createHttpRequest(m_ApiClient.get()), *response);
+        if (response->getStatusCode() != 200) {
+            throw aspose::words::cloud::ApiException(response->getStatusCode(), response->getErrorMessage());
+        }
+
+        return response;
+    }
+
     std::shared_ptr<aspose::words::cloud::responses::InsertDrawingObjectOnlineResponse> WordsApi::insertDrawingObjectOnline(std::shared_ptr<aspose::words::cloud::requests::InsertDrawingObjectOnlineRequest> request)
     {
         auto response = std::make_shared< aspose::words::cloud::responses::InsertDrawingObjectOnlineResponse >();
